@@ -21,8 +21,8 @@ public class Main {
 			int te;
 
 			while(true){
-				
-				
+
+
 				if (buf.equals("0") || buf.equals("1") || buf.equals("2")){
 					te = Integer.parseInt(buf);
 				}else {
@@ -71,23 +71,29 @@ public class Main {
 				//こちらグー　相手：チョキ
 				if(te == 0 && ran == 1){
 					System.out.print("あなたの勝ちです。\r\n");
-					//チョキ　パー
+				//チョキ　パー
 				} else if (te == 1 && ran == 2){
 					System.out.print("あなたの勝ちです。\r\n");
-					//パー　グー
+				//パー　グー
 				}else if (te == 2 && ran == 0 ){
-				System.out.print("あなたの勝ちです。\r\n");
+					System.out.print("あなたの勝ちです。\r\n");
 				//引き分け
 				}else if (te == ran){
 					System.out.print("引き分けです。\r\n");
-					//負け
+				//負け
 				}else{
 					System.out.print("あなたの負けです。\r\n");
 				}
 
 				//もう一度
-				System.out.print("じゃんけんゲームです。\r\nグーは 0：チョキは1：パーは2:\r\nを入力してください。：");
+				System.out.print("じゃんけんゲームです。\r\nグーは 0：チョキは1：パーは2:終了は9：\r\nを入力してください。：");
 				buf = br.readLine();
+				
+				if (buf.equals("9"))
+				{
+					System.out.print("終了します。おつかれさまでした。");
+					break;
+				}
 			}
 
 		} catch (IOException e) {
