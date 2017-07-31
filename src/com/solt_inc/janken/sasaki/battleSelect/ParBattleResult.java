@@ -1,8 +1,11 @@
-package battleSelect;
+package com.solt_inc.janken.sasaki.battleSelect;
 
-public class ParBattleResult {
+import com.solt_inc.janken.sasaki.BattleResult;
 
-    public String battle(String cpuPart) {
+public class ParBattleResult extends BattleResult{
+
+    @Override
+    public String battleSub(String cpuPart) {
         String result = "";
 
         switch (cpuPart) {
