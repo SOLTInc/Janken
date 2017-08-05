@@ -97,6 +97,8 @@ public class Slot extends BaseService {
 			System.out.println("おめでとう! "+配当結果+" 枚当たり");
 			System.out.println("");
 			Bean.coinPlus(配当結果);
+		} else if(!chk()) {
+			return false;
 		}
 		return true;
 	}
