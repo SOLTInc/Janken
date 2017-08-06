@@ -13,16 +13,16 @@ public class Cpu {
 
 		switch (ran){
 			case 0:
-				System.out.print("相手の手はグーです。\r\n");
+				System.out.println("相手の手はグーです。");
 				break;
 			case 1:
-				System.out.print("相手の手はチョキです。\r\n");
+				System.out.println("相手の手はチョキです。");
 				break;
 			case 2:
-				System.out.print("相手の手はパーです。\r\n");
+				System.out.println("相手の手はパーです。");
 				break;
 			default:
-				System.out.print("相手の手は不正です。\r\n");
+				System.out.println("相手の手は不正です。");
 		}
 
 		return ran;

@@ -15,19 +15,19 @@ public class Player {
   			switch (te){
   				case 0:
   					// te = 0;
-  					System.out.print("あなたの手はグーです。\r\n");
+  					System.out.println("あなたの手はグーです。");
   					break;
   				case 1:
   					// te = 1;
-  					System.out.print("あなたの手はチョキです。\r\n");
+  					System.out.println("あなたの手はチョキです。");
   					break;
   				case 2:
   					// te = 2;
-  					System.out.print("あなたの手はパーです。\r\n");
+  					System.out.println("あなたの手はパーです。");
   					break;
   				default:
   					// te = 3;
-  					System.out.print("あなたの手は不正です。\r\n");
+  					System.out.println("あなたの手は不正です。");
   			}
 		return te;
 

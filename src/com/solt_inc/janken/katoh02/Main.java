@@ -9,10 +9,17 @@ public class Main {
 	public static void main(String[] args){
 
 		//グーは0 チョキは1 パーは2
-      	System.out.print("じゃんけんゲームです。\r\nグーは 0：チョキは1：パーは2:\r\nを入力してください。：");
+      	System.out.println("じゃんけんゲームです。");
+      	System.out.println("グーは 0：チョキは1：パーは2:");
+      	System.out.print("を入力してください。：");
+
+      	//テキストの入力'
       	InputStreamReader isr = new InputStreamReader(System.in);
       	BufferedReader br = new BufferedReader(isr);
       	String buf = "";
+
+      	//ファイルの入力
+
       	try {
 
      		buf = br.readLine();
@@ -25,7 +32,7 @@ public class Main {
       		Result Judge = new Result();
 
       		int ran;
-
+      		int IVicotoryPoint = 1;
       		while(true){
 
       			//自分の手を決める
@@ -35,16 +42,22 @@ public class Main {
       			ran = Enemy.Cpu_Hand();
 
       			//結果
-      			Judge.Jude_Result(te, ran);
+      			Judge.Jude_Result(te, ran ,IVicotoryPoint);
+
+      			//出力クラス
+
 
       			//もう一度
-      			System.out.print("==================================================\r\n");
-      			System.out.print("じゃんけんゲームです。\r\nグーは 0：チョキは1：パーは2:終了は9：\r\nを入力してください。：");
+      			System.out.println("==================================================");
+      	      	System.out.println("じゃんけんゲームです。");
+      	      	System.out.println("グーは 0：チョキは1：パーは2:");
+      	      	System.out.println("終了は9:");
+      	      	System.out.print("を入力してください。：");
       			buf = br.readLine();
 
       			if (buf.equals("9"))
       			{
-      				System.out.print("終了します。おつかれさまでした。");
+      				System.out.println("終了します。おつかれさまでした。");
       				break;
       			}
       		}
