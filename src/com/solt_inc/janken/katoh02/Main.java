@@ -30,9 +30,20 @@ public class Main {
       		Player Play = new Player();
       		Cpu Enemy = new Cpu();
       		Result Judge = new Result();
+      		OutputLog Output = new OutputLog();
 
       		int ran;
-      		int IVicotoryPoint = 1;
+
+      		//ログ変数
+      		int[] IResultPoint = new int[5];//0：勝ち数、1:対戦数、2:グーの出した数、3:チョキの出した数、4:パーの出した数
+
+      		//仮
+      		IResultPoint[0] = 0;
+      		IResultPoint[1] = 0;
+      		IResultPoint[2] = 0;
+      		IResultPoint[3] = 0;
+      		IResultPoint[4] = 0;
+
       		while(true){
 
       			//自分の手を決める
@@ -42,10 +53,7 @@ public class Main {
       			ran = Enemy.Cpu_Hand();
 
       			//結果
-      			Judge.Jude_Result(te, ran ,IVicotoryPoint);
-
-      			//出力クラス
-
+      			Judge.Jude_Result(te, ran ,IResultPoint);
 
       			//もう一度
       			System.out.println("==================================================");
@@ -57,6 +65,9 @@ public class Main {
 
       			if (buf.equals("9"))
       			{
+          			//結果出力
+          			Output.Input_Result(IResultPoint);
+
       				System.out.println("終了します。おつかれさまでした。");
       				break;
       			}
