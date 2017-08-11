@@ -1,7 +1,10 @@
-package com.solt_inc.janken2.katoh;
+package com.solt_inc.janken.katoh02;
 
 public class Player {
 
+	//-----------------------------------------------------
+	//　プレイヤーの手の設定
+	//-----------------------------------------------------
 	public Integer Player_Hand(String buf) {
 
 		int te;

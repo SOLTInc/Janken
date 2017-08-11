@@ -1,7 +1,10 @@
-package com.solt_inc.janken2.katoh;
+package com.solt_inc.janken.katoh02;
 
 public class Result {
 
+	//-----------------------------------------------------
+	//　結果処理
+	//-----------------------------------------------------
 	public void Jude_Result(int te,int ran ,int[] IResultPoint){
 
 		//判定＆結果を出す
@@ -26,6 +29,7 @@ public class Result {
 			System.out.println("あなたの負けです。");
 		}
 
+		//ログ用処理
 		//グーを出した数
 		if(te == 0)
 		{

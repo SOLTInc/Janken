@@ -1,4 +1,4 @@
-package com.solt_inc.janken2.katoh;
+package com.solt_inc.janken.katoh02;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,19 +6,22 @@ import java.io.InputStreamReader;
 
 public class Main {
 
+	//-----------------------------------------------------
+	//　メイン処理
+	//-----------------------------------------------------
 	public static void main(String[] args){
 
-		//グーは0 チョキは1 パーは2
+		//じゃんけんゲーム紹介テキスト
       	System.out.println("じゃんけんゲームです。");
       	System.out.println("グーは 0：チョキは1：パーは2:");
       	System.out.print("を入力してください。：");
 
-      	//テキストの入力'
+      	//手の入力処理
       	InputStreamReader isr = new InputStreamReader(System.in);
       	BufferedReader br = new BufferedReader(isr);
       	String buf = "";
 
-      	//ファイルの入力
+      	//ファイルの入力（未記入）
 
       	try {
 
