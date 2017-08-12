@@ -10,7 +10,7 @@ public class OutputLog {
 	//-----------------------------------------------------
 	//　ログ出力
 	//-----------------------------------------------------
-	public void Input_Result(int[] IResultPoint){
+	public void Output_Result(int[] IResultPoint){
 		try{
 
 		      File file = new File("log.txt");
