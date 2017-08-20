@@ -13,52 +13,35 @@ public class OutputLog {
 	public void Output_Result(int[] IResultPoint){
 		try{
 
-		      File file = new File("log.txt");
+			File file = new File("log.txt");
+			CheckFile checkfile = new CheckFile();
 
-		      //相対パスの取得
-		      String path = file.getAbsolutePath();
+			//パスの取得
+			String path = file.getAbsolutePath();
 
-		      //ログ出力
-		      if (checkBeforeWritefile(file)){
+			//ログ出力
+			if (checkfile.checkBeforeWritefile(file)){
 
-		    	BufferedWriter filewriter = new BufferedWriter(new FileWriter(file));
+				BufferedWriter filewriter = new BufferedWriter(new FileWriter(file));
 
-		    	//結果格納
-		    	for(int count = 0; count < 5; count++){
-			        filewriter.write(String.valueOf(IResultPoint[count]));
-			        filewriter.newLine();
-		    	}
-
-		        filewriter.close();
-
-		        //出力先を記載する。
-		        System.out.println("Path:" + path + "に実績を出力しました。");
-
-		      }else{
-		        System.out.println("ファイルに書き込めません");
-		      }
-		    }catch(IOException e){
-		      System.out.println(e);
-		    }
-
-	}
-
-	//-----------------------------------------------------
-	//　ファイルの存在チェック
-	//-----------------------------------------------------
-	private static boolean checkBeforeWritefile(File file){
-		    if (file.exists()){
-		      if (file.isFile() && file.canWrite()){
-		        return true;
-		      }
-		    } else {
-		    	try {
-					file.createNewFile();
-				} catch (IOException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
+				//結果格納
+				for(int count = 0; count < 5; count++){
+					filewriter.write(String.valueOf(IResultPoint[count]));
+					filewriter.newLine();
 				}
-		    }
-		    return false;
+
+				filewriter.close();
+
+				//出力先を記載する。
+				System.out.println("Path:" + path + "に実績を出力しました。");
+
+			}else{
+				System.out.println("ファイルに書き込めません");
+			}
+		}catch(IOException e){
+			System.out.println(e);
+		}
+
 	}
+
 }

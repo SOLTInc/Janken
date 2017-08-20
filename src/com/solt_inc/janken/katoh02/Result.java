@@ -13,18 +13,18 @@ public class Result {
 		if(te == 0 && ran == 1){
 			System.out.println("あなたの勝ちです。");
 			IResultPoint[0] = IResultPoint[0] + 1;
-		//チョキ　パー
+			//チョキ　パー
 		} else if (te == 1 && ran == 2){
 			System.out.println("あなたの勝ちです。");
 			IResultPoint[0] = IResultPoint[0] + 1;
-		//パー　グー
+			//パー　グー
 		}else if (te == 2 && ran == 0 ){
 			System.out.println("あなたの勝ちです。");
 			IResultPoint[0] = IResultPoint[0] + 1;
-		//引き分け
+			//引き分け
 		}else if (te == ran){
 			System.out.println("引き分けです。");
-		//負け
+			//負け
 		}else{
 			System.out.println("あなたの負けです。");
 		}
@@ -50,6 +50,8 @@ public class Result {
 
 		//対戦数
 		IResultPoint[1] = IResultPoint[1] + 1;
+
+		System.out.println("");
 
 	}
 

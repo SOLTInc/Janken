@@ -15,58 +15,44 @@ public class InputLog {
 
 		try{
 
-		int i = 0;
+			int i = 0;
 
-		File file = new File("log.txt");
-		BufferedReader br = new BufferedReader(new FileReader(file));
+			File file = new File("log.txt");
 
-		if (checkBeforeWritefile(file)){
+			CheckFile checkfile = new CheckFile();
 
-			String str = br.readLine();
+			if (checkfile.checkBeforeWritefile(file)){
 
-			  while(str != null){
+				BufferedReader br = new BufferedReader(new FileReader(file));
 
-			    IResultPoint[i] = Integer.parseInt(str);
-			    i = i + 1;
-			    str = br.readLine();
-			  }
+				String str = br.readLine();
 
-		}else{
-			//過去の実績全てに0を格納する。
-      		IResultPoint[0] = 0;
-      		IResultPoint[1] = 0;
-      		IResultPoint[2] = 0;
-      		IResultPoint[3] = 0;
-      		IResultPoint[4] = 0;
-		}
+				while(str != null){
 
-		br.close();
+					IResultPoint[i] = Integer.parseInt(str);
+					i = i + 1;
+					str = br.readLine();
+				}
+
+				br.close();
+
+			}else{
+				//過去の実績全てに0を格納する。
+				IResultPoint[0] = 0;
+				IResultPoint[1] = 0;
+				IResultPoint[2] = 0;
+				IResultPoint[3] = 0;
+				IResultPoint[4] = 0;
+			}
 
 		}catch(FileNotFoundException e){
-				System.out.println(e);
+			System.out.println(e);
 		}catch(IOException e){
 			System.out.println(e);
 		}
 	}
 
-	//-----------------------------------------------------
-	//　ファイルの存在チェック
-	//-----------------------------------------------------
-	private static boolean checkBeforeWritefile(File file){
-		    if (file.exists()){
-		      if (file.isFile() && file.canWrite()){
-		        return true;
-		      }
-		    } else {
-		    	try {
-					file.createNewFile();
-				} catch (IOException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
-				}
-		    }
-		    return false;
-	}
+
 }
 
 

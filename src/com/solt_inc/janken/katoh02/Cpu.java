@@ -16,17 +16,17 @@ public class Cpu {
 		int ran = rnd.nextInt(3);
 
 		switch (ran){
-			case 0:
-				System.out.println("相手の手はグーです。");
-				break;
-			case 1:
-				System.out.println("相手の手はチョキです。");
-				break;
-			case 2:
-				System.out.println("相手の手はパーです。");
-				break;
-			default:
-				System.out.println("相手の手は不正です。");
+		case 0:
+			System.out.println("相手の手はグーです。");
+			break;
+		case 1:
+			System.out.println("相手の手はチョキです。");
+			break;
+		case 2:
+			System.out.println("相手の手はパーです。");
+			break;
+		default:
+			System.out.println("相手の手は不正です。");
 		}
 
 		return ran;
