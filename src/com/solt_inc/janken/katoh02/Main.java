@@ -11,6 +11,7 @@ public class Main {
 	//-----------------------------------------------------
 	public static void main(String[] args){
 
+
 		try {
 
 			//クラスの生成
@@ -18,16 +19,16 @@ public class Main {
 			Player Play = new Player();
 			Cpu Enemy = new Cpu();
 			Result Judge = new Result();
-
+			Past Past = new Past();
 
 			//変数宣言
 			int te;		//自分の手
 			int ran;	//相手の手
-
 			int[] IResultPoint = new int[5];//0：勝ち数、1:対戦数、2:グーの出した数、3:チョキの出した数、4:パーの出した数
 
 			//ファイル入力
 			Input.Input_Result(IResultPoint);
+			Past.Input_Past();
 
 			while(true){
 
@@ -58,7 +59,8 @@ public class Main {
 				}
 				else if (buf.equals("6")){
 
-					//過去の結果
+
+					Past.Input_Past();
 
 				}
 				else if (buf.equals("9")){
@@ -68,6 +70,7 @@ public class Main {
 					Output.Output_Result(IResultPoint);
 
 					System.out.println("終了します。おつかれさまでした。");
+
 					break;
 
 				}
@@ -88,6 +91,11 @@ public class Main {
 		} catch (IOException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+		}
+		finally {
+
+			
+
 		}
 
 	}
