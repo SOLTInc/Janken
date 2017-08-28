@@ -14,6 +14,23 @@ import java.util.Date;
 public class Past {
 
 	//-----------------------------------------------------
+	//　初期チェック
+	//-----------------------------------------------------
+	public void Input_Check(){
+
+		File file = new File("past.txt");
+
+		CheckFile checkfile = new CheckFile();
+
+		if (checkfile.checkBeforeWritefile(file)){
+
+		}else{
+
+		}
+
+	}
+
+	//-----------------------------------------------------
 	//　結果入力
 	//-----------------------------------------------------
 	public void Input_Past(){

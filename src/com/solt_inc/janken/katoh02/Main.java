@@ -3,7 +3,7 @@ package com.solt_inc.janken.katoh02;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+import java.text.Normalizer;
 public class Main {
 
 	//-----------------------------------------------------
@@ -28,7 +28,7 @@ public class Main {
 
 			//ファイル入力
 			Input.Input_Result(IResultPoint);
-			Past.Input_Past();
+			Past.Input_Check();
 
 			while(true){
 
@@ -49,6 +49,8 @@ public class Main {
 				//入力処理
 				buf = br.readLine();
 
+				//半角全角のチェック
+				buf = Normalizer.normalize(buf, Normalizer.Form.NFKC);
 
 				if (buf.equals("5")){
 
@@ -94,7 +96,7 @@ public class Main {
 		}
 		finally {
 
-			
+
 
 		}
 
