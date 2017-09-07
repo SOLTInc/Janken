@@ -7,7 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -16,27 +18,8 @@ public class Past {
 	//-----------------------------------------------------
 	//　初期チェック
 	//-----------------------------------------------------
-	public void Input_Check(){
-
-		File file = new File("past.txt");
-
-		CheckFile checkfile = new CheckFile();
-
-		if (checkfile.checkBeforeWritefile(file)){
-
-		}else{
-
-		}
-
-	}
-
-	//-----------------------------------------------------
-	//　結果入力
-	//-----------------------------------------------------
-	public void Input_Past(){
-
+	public void Input_Check(ArrayList<String> array){
 		try{
-
 			File file = new File("past.txt");
 
 			CheckFile checkfile = new CheckFile();
@@ -47,29 +30,97 @@ public class Past {
 
 				String str = br.readLine();
 
+				while(str != null){
+
+					array.add(str);
+					str = br.readLine();
+
+				}
+
+				br.close();
+
+			} else {
+
+			}
+
+		} catch(FileNotFoundException e) {
+			System.out.println(e);
+		} catch(IOException e) {
+			System.out.println(e);
+		}
+	}
+
+	//-----------------------------------------------------
+	//　結果入力
+	//-----------------------------------------------------
+	public void Input_Past(ArrayList<String> array){
+
+		try{
+
+			if (array.size() != 0){
+
 				System.out.println("");
 				System.out.println("=======================================");
 				System.out.println("◇過去の結果");
 
-				while(str != null){
-
-					System.out.println(str);
-					str = br.readLine();
-
+				for(int i =0; i < array.size(); i++)
+				{
+					System.out.println(array.get(i));
 				}
 
 				System.out.println("=======================================");
 				System.out.println("");
 
-				br.close();
-
 			}else{
+
 				System.out.println("");
 				System.out.println("=======================================");
 				System.out.println("◇過去の結果");
 				System.out.println("=======================================");
 				System.out.println("");
+
 			}
+
+		} finally {
+
+		}
+
+	}
+
+	//-----------------------------------------------------
+	//　結果コメント格納
+	//-----------------------------------------------------
+	public void Output_Past_Comment(ArrayList<String> array){
+		try{
+
+			File file = new File("past.txt");
+			CheckFile checkfile = new CheckFile();
+
+			System.out.println("=======================================");
+			System.out.print("追加する行を入力してください。：");
+
+			//手の入力処理
+			InputStreamReader isr = new InputStreamReader(System.in);
+			BufferedReader br = new BufferedReader(isr);
+			String gyostr = "";
+			int Count = 0;
+
+			//行　入力処理
+			gyostr = br.readLine();
+
+			int gyo = Integer.parseInt(gyostr);
+
+			System.out.print("追加するコメントを入力して下さい：");
+			String comment = "";
+
+			//コメント　入力処理
+			comment = br.readLine();
+
+			array.set(gyo -1,array.get(gyo -1) + "\t" + comment);
+
+			//ファイルを保存する
+			Past Past = new Past();
+			Past.Output_Past(array);
 
 		}catch(FileNotFoundException e){
 			System.out.println(e);
@@ -77,26 +128,27 @@ public class Past {
 			System.out.println(e);
 		}
 	}
+
 	//-----------------------------------------------------
 	//　結果出力
 	//-----------------------------------------------------
-	public void Output_Past(int[] IResultPoint,int te,int ran,int result){
+	public void Output_Past(ArrayList<String> array){
+
 		try{
+
 
 			File file = new File("past.txt");
 			CheckFile checkfile = new CheckFile();
 
-			//パスの取得
-			String path = file.getAbsolutePath();
-
 			//ログ出力
 			if (checkfile.checkBeforeWritefile(file)){
 
-				BufferedWriter filewriter = new BufferedWriter(new FileWriter(file,true));
+				BufferedWriter filewriter = new BufferedWriter(new FileWriter(file));
 
-				filewriter.write(Output_Text(IResultPoint,te,ran,result));
-
-				filewriter.newLine();
+				for (int i = 0; i< array.size(); i++){
+					filewriter.write(array.get(i));
+					filewriter.newLine();
+				}
 
 				filewriter.close();
 
@@ -113,7 +165,7 @@ public class Past {
 	//-----------------------------------------------------
 	//　結果テキスト
 	//-----------------------------------------------------
-	private String Output_Text(int[] IResultPoint,int te,int ran,int result){
+	public String Output_Text(int[] IResultPoint,int te,int ran,int result){
 
 		String paststr;
 

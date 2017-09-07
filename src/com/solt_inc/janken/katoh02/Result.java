@@ -1,11 +1,13 @@
 package com.solt_inc.janken.katoh02;
 
+import java.util.ArrayList;
+
 public class Result {
 
 	//-----------------------------------------------------
 	//　結果処理
 	//-----------------------------------------------------
-	public void Jude_Result(int te,int ran ,int[] IResultPoint){
+	public void Jude_Result(int te,int ran ,int[] IResultPoint,ArrayList<String> array){
 
 		int result;
 		//判定＆結果を出す
@@ -57,9 +59,20 @@ public class Result {
 		//対戦数
 		IResultPoint[1] = IResultPoint[1] + 1;
 
+		//結果格納
+
+
+		//結果出力
+		OutputLog Output = new OutputLog();
+		Output.Output_Result(IResultPoint);
+
 		//結果出力
 		Past Past = new Past();
-		Past.Output_Past(IResultPoint,te, ran ,result);
+
+		//結果追加
+		array.add(Past.Output_Text(IResultPoint,te,ran,result));
+
+		Past.Output_Past(array);
 
 		System.out.println("");
 

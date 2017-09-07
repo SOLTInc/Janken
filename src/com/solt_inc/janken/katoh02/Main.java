@@ -4,13 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.Normalizer;
+import java.util.ArrayList;
+
 public class Main {
 
 	//-----------------------------------------------------
 	//　メイン処理
 	//-----------------------------------------------------
 	public static void main(String[] args){
-
 
 		try {
 
@@ -25,19 +26,20 @@ public class Main {
 			int te;		//自分の手
 			int ran;	//相手の手
 			int[] IResultPoint = new int[5];//0：勝ち数、1:対戦数、2:グーの出した数、3:チョキの出した数、4:パーの出した数
+			ArrayList<String> array = new ArrayList<String>();
 
 			//ファイル入力
 			Input.Input_Result(IResultPoint);
-			Past.Input_Check();
+			Past.Input_Check(array);
 
 			while(true){
 
 				//じゃんけんゲーム紹介テキスト
-
 				System.out.println("じゃんけんゲームです。");
 				System.out.println("グーは 0：チョキは1：パーは2:");
 				System.out.println("過去の実績は5:");
 				System.out.println("過去の結果は6:");
+				System.out.println("過去の結果にコメントは7:");
 				System.out.println("終了は9:");
 				System.out.print("を入力してください。：");
 
@@ -52,31 +54,30 @@ public class Main {
 				//半角全角のチェック
 				buf = Normalizer.normalize(buf, Normalizer.Form.NFKC);
 
-				if (buf.equals("5")){
+				if ("5".equals(buf)){
 
-					//履歴表示
+					//過去の実績　表示
 					History History = new History();
 					History.History_result(IResultPoint);
 
-				}
-				else if (buf.equals("6")){
+				} else if ("6".equals(buf)){
 
+					//過去の結果　表示
+					Past.Input_Past(array);
 
-					Past.Input_Past();
+				} else if ("7".equals(buf)){
 
-				}
-				else if (buf.equals("9")){
+					//過去の結果　表示　コメント追加
+					Past.Input_Past(array);
+					Past.Output_Past_Comment(array);
 
-					//結果出力
-					OutputLog Output = new OutputLog();
-					Output.Output_Result(IResultPoint);
+				} else if ("9".equals(buf)){
 
 					System.out.println("終了します。おつかれさまでした。");
 
 					break;
 
-				}
-				else{
+				} else {
 
 					//自分の手を決める
 					te = Play.Player_Hand(buf);
@@ -85,21 +86,13 @@ public class Main {
 					ran = Enemy.Cpu_Hand();
 
 					//結果
-					Judge.Jude_Result(te, ran ,IResultPoint);
+					Judge.Jude_Result(te, ran ,IResultPoint ,array);
 
 				}
 			}
-
 		} catch (IOException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		finally {
-
-
-
-		}
-
 	}
-
 }
