@@ -51,7 +51,7 @@ public class Main {
 				//入力処理
 				buf = br.readLine();
 
-				//半角全角のチェック
+				//全角を半角にする
 				buf = Normalizer.normalize(buf, Normalizer.Form.NFKC);
 
 				if ("5".equals(buf)){
@@ -69,7 +69,7 @@ public class Main {
 
 					//過去の結果　表示　コメント追加
 					Past.Input_Past(array);
-					Past.Output_Past_Comment(array);
+					Past.Output_Past_Comment(array,IResultPoint);
 
 				} else if ("9".equals(buf)){
 

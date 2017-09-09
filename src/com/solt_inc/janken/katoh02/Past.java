@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,37 +91,81 @@ public class Past {
 	//-----------------------------------------------------
 	//　結果コメント格納
 	//-----------------------------------------------------
-	public void Output_Past_Comment(ArrayList<String> array){
+	public void Output_Past_Comment(ArrayList<String> array,int[] IResultPoint){
 		try{
 
-			File file = new File("past.txt");
-			CheckFile checkfile = new CheckFile();
+			if (IResultPoint[1] == 0){
 
-			System.out.println("=======================================");
-			System.out.print("追加する行を入力してください。：");
+				System.out.println("=======================================");
+				System.out.println("◇コメント追加");
+				System.out.println("対戦数が0のため、現在コメントを入力することができません。");
+				System.out.println("=======================================");
+				System.out.println("");
 
-			//手の入力処理
-			InputStreamReader isr = new InputStreamReader(System.in);
-			BufferedReader br = new BufferedReader(isr);
-			String gyostr = "";
-			int Count = 0;
+			} else {
 
-			//行　入力処理
-			gyostr = br.readLine();
+				File file = new File("past.txt");
+				CheckFile checkfile = new CheckFile();
 
-			int gyo = Integer.parseInt(gyostr);
+				System.out.println("=======================================");
+				System.out.println("◇コメント追加");
 
-			System.out.print("追加するコメントを入力して下さい：");
-			String comment = "";
+				while(true){
 
-			//コメント　入力処理
-			comment = br.readLine();
+					System.out.print("追加する行を入力してください。：");
 
-			array.set(gyo -1,array.get(gyo -1) + "\t" + comment);
+					//手の入力処理
+					InputStreamReader isr = new InputStreamReader(System.in);
+					BufferedReader br = new BufferedReader(isr);
+					String gyostr = "";
+					int Count = 0;
 
-			//ファイルを保存する
-			Past Past = new Past();
-			Past.Output_Past(array);
+					//行　入力処理
+					gyostr = br.readLine();
+					gyostr = Normalizer.normalize(gyostr, Normalizer.Form.NFKC);
+
+					int gyo = Integer.parseInt(gyostr);
+
+					if (gyo > 0 && gyo <= IResultPoint[1]){
+
+						while(true){
+
+							//コメント追加
+							System.out.print("追加するコメントを入力して下さい(20文字以内)：");
+							String comment = "";
+
+							//　※　コメント処理について
+							//	改行、追加のコメントを考えないものとする。
+
+							//コメント　入力処理
+							comment = br.readLine();
+
+							if(comment.length() <= 20){
+
+								array.set(gyo -1,array.get(gyo -1) + "\t" + comment);
+
+								//ファイルを保存する
+								Past Past = new Past();
+								Past.Output_Past(array);
+
+								break;
+
+							} else {
+								System.out.println("20文字以内までで入力してください。");
+							}
+
+						}
+
+						System.out.println("=======================================");
+						System.out.println("");
+
+						break;
+
+					} else {
+						System.out.println("1～" + IResultPoint[1] + "までの数値を入力してください。");
+					}
+				}
+			}
 
 		}catch(FileNotFoundException e){
 			System.out.println(e);
@@ -140,6 +185,9 @@ public class Past {
 			File file = new File("past.txt");
 			CheckFile checkfile = new CheckFile();
 
+			//パスの取得
+			String path = file.getAbsolutePath();
+
 			//ログ出力
 			if (checkfile.checkBeforeWritefile(file)){
 
@@ -151,6 +199,9 @@ public class Past {
 				}
 
 				filewriter.close();
+
+				//出力先を記載する。
+				System.out.println("Path:" + path + "に実績を出力しました。");
 
 			}else{
 				System.out.println("ファイルに書き込めませんでした。");

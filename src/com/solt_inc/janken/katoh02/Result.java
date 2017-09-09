@@ -59,19 +59,13 @@ public class Result {
 		//対戦数
 		IResultPoint[1] = IResultPoint[1] + 1;
 
-		//結果格納
-
-
 		//結果出力
 		OutputLog Output = new OutputLog();
 		Output.Output_Result(IResultPoint);
 
 		//結果出力
 		Past Past = new Past();
-
-		//結果追加
 		array.add(Past.Output_Text(IResultPoint,te,ran,result));
-
 		Past.Output_Past(array);
 
 		System.out.println("");
