@@ -5,18 +5,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class InputLog {
 
 	//-----------------------------------------------------
 	//　ログ出力
 	//-----------------------------------------------------
-	public void Input_Result(int[] IResultPoint){
+	public void Input_Result(ArrayList<Integer> IResultPoint){
 
 		try{
-
-			int i = 0;
-
 			File file = new File("log.txt");
 
 			CheckFile checkfile = new CheckFile();
@@ -29,8 +27,7 @@ public class InputLog {
 
 				while(str != null){
 
-					IResultPoint[i] = Integer.parseInt(str);
-					i = i + 1;
+					IResultPoint.add(Integer.parseInt(str));
 					str = br.readLine();
 				}
 
@@ -38,11 +35,11 @@ public class InputLog {
 
 			}else{
 				//過去の実績全てに0を格納する。
-				IResultPoint[0] = 0;
-				IResultPoint[1] = 0;
-				IResultPoint[2] = 0;
-				IResultPoint[3] = 0;
-				IResultPoint[4] = 0;
+				IResultPoint.add(0);
+				IResultPoint.add(0);
+				IResultPoint.add(0);
+				IResultPoint.add(0);
+				IResultPoint.add(0);
 			}
 
 		}catch(FileNotFoundException e){

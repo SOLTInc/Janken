@@ -25,7 +25,8 @@ public class Main {
 			//変数宣言
 			int te;		//自分の手
 			int ran;	//相手の手
-			int[] IResultPoint = new int[5];//0：勝ち数、1:対戦数、2:グーの出した数、3:チョキの出した数、4:パーの出した数
+			// int[] IResultPoint = new int[5];//0：勝ち数、1:対戦数、2:グーの出した数、3:チョキの出した数、4:パーの出した数
+			ArrayList<Integer> IResultPoint = new ArrayList<Integer>();
 			ArrayList<String> array = new ArrayList<String>();
 
 			//ファイル入力

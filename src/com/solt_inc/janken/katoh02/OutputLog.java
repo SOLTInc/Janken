@@ -4,13 +4,14 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class OutputLog {
 
 	//-----------------------------------------------------
 	//　ログ出力
 	//-----------------------------------------------------
-	public void Output_Result(int[] IResultPoint){
+	public void Output_Result(ArrayList<Integer> IResultPoint){
 		try{
 
 			File file = new File("log.txt");
@@ -26,7 +27,7 @@ public class OutputLog {
 
 				//結果格納
 				for(int count = 0; count < 5; count++){
-					filewriter.write(String.valueOf(IResultPoint[count]));
+					filewriter.write(String.valueOf(IResultPoint.get(count)));
 					filewriter.newLine();
 				}
 

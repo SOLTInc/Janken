@@ -29,13 +29,10 @@ public class Past {
 
 				BufferedReader br = new BufferedReader(new FileReader(file));
 
-				String str = br.readLine();
+				String str;
 
-				while(str != null){
-
+				while((str = br.readLine()) != null){
 					array.add(str);
-					str = br.readLine();
-
 				}
 
 				br.close();
@@ -91,10 +88,10 @@ public class Past {
 	//-----------------------------------------------------
 	//　結果コメント格納
 	//-----------------------------------------------------
-	public void Output_Past_Comment(ArrayList<String> array,int[] IResultPoint){
+	public void Output_Past_Comment(ArrayList<String> array,ArrayList<Integer> IResultPoint){
 		try{
 
-			if (IResultPoint[1] == 0){
+			if (IResultPoint.get(1) == 0){
 
 				System.out.println("=======================================");
 				System.out.println("◇コメント追加");
@@ -103,9 +100,6 @@ public class Past {
 				System.out.println("");
 
 			} else {
-
-				File file = new File("past.txt");
-				CheckFile checkfile = new CheckFile();
 
 				System.out.println("=======================================");
 				System.out.println("◇コメント追加");
@@ -118,51 +112,55 @@ public class Past {
 					InputStreamReader isr = new InputStreamReader(System.in);
 					BufferedReader br = new BufferedReader(isr);
 					String gyostr = "";
-					int Count = 0;
 
 					//行　入力処理
 					gyostr = br.readLine();
 					gyostr = Normalizer.normalize(gyostr, Normalizer.Form.NFKC);
 
-					int gyo = Integer.parseInt(gyostr);
+					if (isNum(gyostr)){
+						int gyo = Integer.parseInt(gyostr);
 
-					if (gyo > 0 && gyo <= IResultPoint[1]){
+						if (gyo > 0 && gyo <= IResultPoint.get(1)){
 
-						while(true){
+							while(true){
 
-							//コメント追加
-							System.out.print("追加するコメントを入力して下さい(20文字以内)：");
-							String comment = "";
+								//コメント追加
+								System.out.print("追加するコメントを入力して下さい(20文字以内)：");
+								String comment = "";
 
-							//　※　コメント処理について
-							//	改行、追加のコメントを考えないものとする。
+								//　※　コメント処理について
+								//	改行、追加のコメントを考えないものとする。
 
-							//コメント　入力処理
-							comment = br.readLine();
+								//コメント　入力処理
+								comment = br.readLine();
 
-							if(comment.length() <= 20){
+								if(comment.length() <= 20){
 
-								array.set(gyo -1,array.get(gyo -1) + "\t" + comment);
+									array.set(gyo -1,array.get(gyo -1) + "\t" + comment);
 
-								//ファイルを保存する
-								Past Past = new Past();
-								Past.Output_Past(array);
+									//ファイルを保存する
+									Past Past = new Past();
+									Past.Output_Past(array);
 
-								break;
+									break;
 
-							} else {
-								System.out.println("20文字以内までで入力してください。");
+								} else {
+									System.out.println("20文字以内までで入力してください。");
+								}
+
 							}
 
+							System.out.println("=======================================");
+							System.out.println("");
+
+							break;
+
+						} else {
+							System.out.println("1～" + IResultPoint.get(1) + "までの数値を入力してください。");
 						}
 
-						System.out.println("=======================================");
-						System.out.println("");
-
-						break;
-
 					} else {
-						System.out.println("1～" + IResultPoint[1] + "までの数値を入力してください。");
+						System.out.println("数値を入力してください。");
 					}
 				}
 			}
@@ -216,12 +214,12 @@ public class Past {
 	//-----------------------------------------------------
 	//　結果テキスト
 	//-----------------------------------------------------
-	public String Output_Text(int[] IResultPoint,int te,int ran,int result){
+	public String Output_Text(ArrayList<Integer> IResultPoint,int te,int ran,int result){
 
 		String paststr;
 
 		//回数
-		paststr = String.valueOf(IResultPoint[1]) + "回目";
+		paststr = String.valueOf(IResultPoint.get(1)) + "回目";
 
 		//日付
 		Date nowDate1 = new Date();
@@ -286,5 +284,16 @@ public class Past {
 		return paststr;
 	}
 
+	//-----------------------------------------------------
+	//　文字列か数値化判定する
+	//-----------------------------------------------------
+	private boolean isNum(String number) {
+	    try {
+	        Integer.parseInt(number);
+	        return true;
+	    } catch (NumberFormatException e) {
+	        return false;
+	    }
+	}
 
 }
