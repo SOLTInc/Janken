@@ -1,3 +1,4 @@
+/* kPast.java Input_Check　オーバーロードしたため、削除 20171112 加藤佳男
 package com.solt_inc.janken.katoh02;
 
 import java.io.BufferedReader;
@@ -48,8 +49,8 @@ public class InputLog {
 			System.out.println(e);
 		}
 	}
-
-
 }
+
+*/
 
 

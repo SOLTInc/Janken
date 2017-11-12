@@ -16,7 +16,6 @@ public class Main {
 		try {
 
 			//クラスの生成
-			InputLog Input = new InputLog();
 			Player Play = new Player();
 			Cpu Enemy = new Cpu();
 			Result Judge = new Result();
@@ -30,8 +29,8 @@ public class Main {
 			ArrayList<String> array = new ArrayList<String>();
 
 			//ファイル入力
-			Input.Input_Result(IResultPoint);
-			Past.Input_Check(array);
+			Past.Input_Check(IResultPoint,"log.txt");	//過去の実績
+			Past.Input_Check(array);	//過去の結果
 
 			while(true){
 
