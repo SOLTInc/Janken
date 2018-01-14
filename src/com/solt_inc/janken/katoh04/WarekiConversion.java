@@ -70,10 +70,10 @@ public class WarekiConversion {
 		sDay = sDay.replace("日","");
 		sDay = sDay.replace("月","/");
 		sDay = sDay.replace("年","/");
-		sDay = sDay.replace("平成元年","1989/1/");
-		sDay = sDay.replace("昭和元年","1926/1/");
-		sDay = sDay.replace("大正元年","1912/1/");
-		sDay = sDay.replace("明治元年","1868/1/");
+		sDay = sDay.replace("平成元","1989/1");
+		sDay = sDay.replace("昭和元","1926/1");
+		sDay = sDay.replace("大正元","1912/1");
+		sDay = sDay.replace("明治元","1868/1");
 		sDay = sDay.replace("平成","1989/");
 		sDay = sDay.replace("昭和","1926/");
 		sDay = sDay.replace("大正","1912/");

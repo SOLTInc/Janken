@@ -9,11 +9,6 @@ public class WarekiChange {
 	//和暦変換ツール　メイン処理
 	public void WarekiChange_Main(){
 
-		//年月日の入力
-		System.out.println("=======================================");
-		System.out.println("◆和暦→西暦変換ツール");
-		System.out.println("和暦の場合：(〇〇yy年mm月dd日　形式 月と日は1桁入力可能)");
-		System.out.print("年月日を入力してください：");
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
 
@@ -22,13 +17,17 @@ public class WarekiChange {
 		String sWareki;
 		Integer iWareki;
 
-		try {
+		while(true){
 
-			buf = br.readLine();
-			System.out.println("=======================================");
-			System.out.println(buf);
-
-			while(true){
+			try {
+				//年月日の入力
+				System.out.println("=======================================");
+				System.out.println("◆和暦→西暦変換ツール");
+				System.out.println("和暦の場合：(〇〇yy年mm月dd日　形式 月と日は1桁入力可能)");
+				System.out.print("年月日を入力してください：");
+				buf = br.readLine();
+				System.out.println("=======================================");
+				System.out.println(buf);
 
 				if ("9".equals(buf)){
 					System.out.println("西暦→和暦変換ツールを終了します。");
@@ -53,31 +52,26 @@ public class WarekiChange {
 							System.out.println(sWareki);
 						}
 						else {
-							System.out.println("正しい和暦ではありません。");
+							throw new MissInputException("正しい和暦ではありません。もう一度入力してください。");
 						}
 					}
 					else{
-						System.out.println("正しい日付ではありません。");
+						throw new MissInputException("日付けが正しくありません。もう一度入力してください。");
 					}
 				} else {
 					//エラー
-					System.out.println("入力規則に違反しました。");
+					throw new MissInputException("入力ミスです。もう一度入力してください。");
 				}
 
 				System.out.println("");
-				System.out.println("=======================================");
-				System.out.println("◆西暦→和暦変換ツール");
-				System.out.println("西暦：(yyyy/mm/dd　形式 月と日は1桁入力可能)");
-				System.out.print("年月日を入力してください：");
-				buf = br.readLine();
-				System.out.println("=======================================");
-				System.out.println(buf);
 
+			} catch (MissInputException e) {
+				System.out.println(e);
+
+			} catch (IOException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
 			}
-
-		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
 		}
 	}
 }

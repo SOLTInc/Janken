@@ -10,24 +10,23 @@ public class SeirekiChange {
 	//西暦変換ツール　メイン処理
 	public void SeirekiChange_Main(){
 
-		//年月日の入力
-		System.out.println("=======================================");
-		System.out.println("◆西暦→和暦変換ツール");
-		System.out.println("西暦：(yyyy/mm/dd　形式 月と日は1桁入力可能)");
-		System.out.print("年月日を入力してください：");
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(isr);
 
 		String sDay[];
 		String buf = "";
 
-		try {
+		while(true){
 
-			buf = br.readLine();
-			System.out.println("=======================================");
-			System.out.println(buf);
-
-			while(true){
+			try {
+				//年月日の入力
+				System.out.println("=======================================");
+				System.out.println("◆西暦→和暦変換ツール");
+				System.out.println("西暦：(yyyy/mm/dd　形式 月と日は1桁入力可能)");
+				System.out.print("年月日を入力してください：");
+				buf = br.readLine();
+				System.out.println("=======================================");
+				System.out.println(buf);
 
 				//終了
 				if ("9".equals(buf)){
@@ -44,30 +43,25 @@ public class SeirekiChange {
 					sDay = buf.split("/",0);
 
 					//文字列を日付に変換する
-		            LocalDateTime d1 = LocalDateTime.of(Integer.parseInt(sDay[0]), Integer.parseInt(sDay[1]), Integer.parseInt(sDay[2]), 0, 0, 0);
+					LocalDateTime d1 = LocalDateTime.of(Integer.parseInt(sDay[0]), Integer.parseInt(sDay[1]), Integer.parseInt(sDay[2]), 0, 0, 0);
 
 					//西暦変換する。
-		            System.out.println(SeirekiConversion.DayConversionMain(d1));
+					System.out.println(SeirekiConversion.DayConversionMain(d1));
 
 				} else {
 					//エラー
-					System.out.println("入力規則に違反しました。");
+					throw new MissInputException("入力ミスです。もう一度入力してください。");
 				}
 
 				System.out.println("");
-				System.out.println("=======================================");
-				System.out.println("◆西暦→和暦変換ツール");
-				System.out.println("西暦：(yyyy/mm/dd　形式 月と日は1桁入力可能)");
-				System.out.print("年月日を入力してください：");
-				buf = br.readLine();
-				System.out.println("=======================================");
-				System.out.println(buf);
 
+			} catch (MissInputException e) {
+				System.out.println(e);
+
+			} catch (IOException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
 			}
-
-		} catch (IOException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
 		}
 	}
 
